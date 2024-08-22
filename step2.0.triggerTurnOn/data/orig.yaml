@@ -1,0 +1,7 @@
+- figNAME: 'tight_pho_selected.pdf'
+  yTITLE: Efficiency of EG175
+  ratioPLOTs:
+    - num: Range7_passingBothJetHLT7
+      den: Range7_passingJetHLT
+      label: HLT_PFJetxx
+      root: result.root

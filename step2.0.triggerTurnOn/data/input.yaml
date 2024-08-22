@@ -1,0 +1,23 @@
+- figNAME: 'HLTPho175_no_pho_id.pdf'
+  yTITLE: Efficiency of EG175
+  ratioPLOTs:
+    - num: HLTbit7/barrel_both
+      den: HLTbit7/barrel_base
+      label: HLT_PFJetxx
+      root: HLT_AbsoluteEfficiency_JetHT_UL2016PostVFP.root
+    - num: HLTbit7/barrel_both
+      den: HLTbit7/barrel_base
+      label: HLT_Photon300er
+      root: HLT_RelativeEfficiency_SinglePhoton_UL2016PostVFP.root
+
+- figNAME: 'HLTPho150_no_pho_id.pdf'
+  yTITLE: Efficiency of EG150
+  ratioPLOTs:
+    - num: HLTbit6/barrel_both
+      den: HLTbit6/barrel_base
+      label: HLT_PFJetxx
+      root: HLT_AbsoluteEfficiency_JetHT_UL2016PostVFP.root
+    - num: HLTbit6/barrel_both
+      den: HLTbit6/barrel_base
+      label: HLT_Photon175
+      root: HLT_RelativeEfficiency_SinglePhoton_UL2016PostVFP.root

@@ -1,0 +1,13 @@
+figNAME: 'turnon_EG75_absonly.pdf'
+yLABEL: Efficiency of EG75
+yRANGE:
+  - 0.
+  - 0.008
+xLABEL: '$p^{\gamma}_{T}$ (GeV)'
+plotables:
+  # the foramt is controlled in each DrawObj.py
+  - type: TGraphAsymmError
+    objname: HLTbit4/barrel_ratio_Full
+    file: HLT_AbsTurnOnEff_JetHT_UL2016PostVFP.root
+    label: HLT_PFJetxx
+    plotstyle: data

@@ -1,0 +1,18 @@
+figNAME: 'turnon_EG36.pdf'
+yLABEL: Efficiency of EG36
+yRANGE:
+  - -0.01
+  - 0.5
+xLABEL: '$p^{\gamma}_{T}$ (GeV)'
+plotables:
+  # the foramt is controlled in each DrawObj.py
+  - type: TGraphAsymmError
+    objname: HLTbit2/barrel_ratio_Full
+    file: HLT_AbsTurnOnEff_JetHT_UL2016PostVFP.root
+    label: HLT_PFJetxx
+    plotstyle: data
+  - type: TGraphAsymmError
+    objname: HLTbit2/barrel_ratio_Full
+    file: HLT_RelTurnOnEff_SinglePhoton_UL2016PostVFP.root
+    label: HLT_Pho30
+    plotstyle: square1

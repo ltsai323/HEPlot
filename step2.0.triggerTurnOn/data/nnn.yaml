@@ -1,0 +1,18 @@
+figNAME: ''
+yLABEL: Efficiency of EG150
+yRANGE:
+  - 0.
+  - 1.4
+xLABEL: '$p^{\gamma}_{T}$ (GeV)'
+plotables:
+  # the foramt is controlled in each DrawObj.py
+  - type: TGraphAsymmError
+    objname: HLTbit6/barrel_ratio_Full
+    file: HLT_AbsTurnOnEff_JetHT_UL2016PostVFP.root
+    label: HLT_PFJetxx
+    plotstyle: data
+  - type: TGraphAsymmError
+    objname: HLTbit6/barrel_ratio_Full
+    file: HLT_RelTurnOnEff_SinglePhoton_UL2016PostVFP.root
+    label: HLT_Pho135
+    plotstyle: square1

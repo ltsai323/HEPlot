@@ -1,0 +1,34 @@
+- figNAME: ''
+  yTITLE: Efficiency of EG175
+  ratioPLOTs:
+    - num: Range7_passingBothJetHLT7
+      den: Range7_passingJetHLT
+      label: HLT_PFJetxx
+      root: result.root
+    - num: HLTbit7/barrel_both
+      den: HLTbit7/barrel_base
+      label: HLT_Photon300er
+      root: HLT_RelativeEfficiency_SinglePhoton_UL2016PostVFP.root
+
+- figNAME: ''
+  yTITLE: Efficiency of EG150
+  ratioPLOTs:
+    - num: Range6_passingBothJetHLT6
+      den: Range6_passingJetHLT
+      label: HLT_PFJetxx
+      root: result.root
+    - num: HLTbit6/barrel_both
+      den: HLTbit6/barrel_base
+      label: HLT_Photon175
+      root: HLT_RelativeEfficiency_SinglePhoton_UL2016PostVFP.root
+        #- figNAME: ''
+        #  yTITLE: Efficiency of EG22
+        #  ratioPLOTs:
+        #    - num: Range0_passingBothJetHLT0
+        #      den: Range0_passingJetHLT
+        #      label: HLT_PFJetxx
+        #      root: result.root
+        #    - num: Range0_passingBothJetHLT0
+        #      den: Range0_passingJetHLT
+        #      label: HLT_Photon175
+        #      root: result.root
