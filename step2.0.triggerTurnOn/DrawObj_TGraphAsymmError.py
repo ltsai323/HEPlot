@@ -67,10 +67,10 @@ class DrawObj_TGraphAsymmError:
 
 if __name__ == "__main__":
     import yaml
-    f = open('newinput.yaml','r')
+    f = open('data/EG90.yaml','r')
     configs = yaml.safe_load(f)
     fig,ax = plt.subplots()
-    drawobj = DrawObj_TGraphAsymmError(configs['plotables'][0])
+    drawobj = DrawObj_TGraphAsymmError(configs['plotables'][0]) # draw first plotables for test
     drawobj.Draw(ax)
 
     if 'yRANGE' in configs:

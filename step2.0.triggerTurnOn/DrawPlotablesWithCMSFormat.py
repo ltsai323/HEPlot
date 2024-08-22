@@ -7,7 +7,6 @@ import matplotlib.ticker as mtick
 import math
 import mplhep as hep
 from uncertainties import ufloat, unumpy
-import HistSet
 from DrawObj_TGraphAsymmError import DrawObj_TGraphAsymmError
 
 
