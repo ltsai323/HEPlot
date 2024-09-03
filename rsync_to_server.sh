@@ -23,4 +23,4 @@ remote_destation=`cat ${remotePATH}`
 
 #rsync -avz --delete $syncFOLDER ntu8:~/Work/github/xPhoton/macros/step2.0.triggerTurnOn/
 if [ $operateMODE == "upload"   ]; then rsync -avz --delete $syncFOLDER $remote_destation; fi
-if [ $operateMODE == "download" ]; then rsync -avz --delete $remote_destation $syncFOLDER; fi
+if [ $operateMODE == "download" ]; then rsync -avz --delete $remote_destation/* $syncFOLDER/; fi

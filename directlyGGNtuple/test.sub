@@ -1,0 +1,11 @@
+executable = a.sh
+Arguments = result_$(Process).root $remoteFILE
+output = mesg_$(Process).out
+error  = mesg_$(Process).err
+log    = mesg_$(Process).log
+
++JobFlavour = 'testmatch'
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT_OR_EVICT
+transfer_output_files = result_$(Process).root
+Queue remoteFILE from input_GJetPythia_Pt40toInf.txt

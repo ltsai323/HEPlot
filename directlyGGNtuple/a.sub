@@ -1,0 +1,9 @@
+executable = a.sh
+Arguments = result_$(Process).root $(remoteFILE)
+output = test_mesg_$(Process).out
+error  = test_mesg_$(Process).err
+log    = test_mesg_$(Process).log
+
++JobFlavour = 'testmatch'
+should_transfer_files = NO
+Queue remoteFILE from testinput.txt
