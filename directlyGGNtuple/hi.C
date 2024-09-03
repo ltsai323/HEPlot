@@ -330,15 +330,16 @@ std::vector<const char*> splitByComma(const char* input) {
 
 int main(int argc, char* argv[])
 {
-  if ( argc < 3 )
-    PrintHelp();
+  /*
+   * Input arg1: output.root (output file name)
+   * Input arg2: input1.root,input2.root,input3.root (input file list, they are separated by comma)
+   */
+  if ( argc < 3 ) PrintHelp();
   const char* outputFILEname = argv[1];
 
   TChain* chain = new TChain("ggNtuplizer/EventTree");
   for ( const char* filename : splitByComma(argv[2]) )
       chain->Add(filename);
-  // for (int i=2; i<argc; ++i)
-  //   chain->Add(argv[i]);
 
   hi a(chain);
   a.Loop(outputFILEname);
