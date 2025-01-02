@@ -1,0 +1,33 @@
+figNAME: 'compCvsL_CtoL.pdf'
+upperpad:
+  xLABEL: ''
+  yLABEL: 'Entries normalized to 1'
+  yRANGE:
+    - 1e-4
+    - 1e2
+  ySCALE: log
+  plotables:
+    # the foramt is controlled in each DrawObj.py
+    - type: TH1F
+      objname: Lall/normDeepFlavour_CvsL
+      file: /Users/noises/workspace/HEPlot/check2.CTaggingVarChecking/secondary_plotable.root
+      label: light from GJet MadGraph
+      plotstyle: hist1
+    - type: TH1F
+      objname: Call/normDeepFlavour_CvsL
+      file: /Users/noises/workspace/HEPlot/check2.CTaggingVarChecking/secondary_plotable.root
+      label: charm from GJet MadGraph
+      plotstyle: hist2
+lowerpad:
+  xLABEL: 'CvsL'
+  yLABEL: 'C/L'
+  yRANGE:
+    - -0.5
+    -  3.0
+  # the foramt is controlled in each DrawObj.py
+  plotables:
+    - type: TGraphAsymmError
+      objname: ratioC_L__CL
+      file: /Users/noises/workspace/HEPlot/check2.CTaggingVarChecking/secondary_plotable.root
+      label: 'C/L'
+      plotstyle: data0

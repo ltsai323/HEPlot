@@ -1,0 +1,23 @@
+figNAME: ''
+yLABEL: 'Entries normalized to 1'
+yRANGE:
+  - 1e-5
+  - 10.0
+ySCALE: log
+#yRANGE:
+#  - 0.0
+#  - 1.0
+#ySCALE: linear
+xLABEL: 'bScore'
+plotables:
+  # the foramt is controlled in each DrawObj.py
+  - type: TH1F
+    objname: Lall/normDeepFlavour_bScore
+    file: /Users/noises/workspace/HEPlot/check2.CTaggingVarChecking/secondary_plotable.root
+    label: light from GJet MadGraph
+    plotstyle: hist1
+  - type: TH1F
+    objname: Call/normDeepFlavour_bScore
+    file: /Users/noises/workspace/HEPlot/check2.CTaggingVarChecking/secondary_plotable.root
+    label: charm from GJet MadGraph
+    plotstyle: hist2
