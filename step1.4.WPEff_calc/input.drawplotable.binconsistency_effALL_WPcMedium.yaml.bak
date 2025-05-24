@@ -1,0 +1,80 @@
+figNAME: 'outputs/hcheck_binconsistency_effAll_WPcMedium.pdf'
+yLABEL: 'efficiencies @ WPc Medium'
+yRANGE:
+  - -0.1
+  - 2.0
+ySCALE: linear
+#yRANGE:
+#  - 0.0
+#  - 1.0
+#ySCALE: linear
+xLABEL: '$p^{\gamma}_{T}$ (GeV)'
+legNcolumn: 3
+legFONTsize: 'xx-small'
+
+plotables:
+  # B efficiency
+  - type: TGraphAsymmError
+    objname: bin00B_WPcM_eff
+    file: WPeff.root
+    label: 'eff B @ bin00'
+    plotstyle: star2
+  - type: TGraphAsymmError
+    objname: bin01B_WPcM_eff
+    file: WPeff.root
+    label: 'eff B @ bin01'
+    plotstyle: cross2
+  - type: TGraphAsymmError
+    objname: bin10B_WPcM_eff
+    file: WPeff.root
+    label: 'eff B @ bin10'
+    plotstyle: square2
+  - type: TGraphAsymmError
+    objname: bin11B_WPcM_eff
+    file: WPeff.root
+    label: 'eff B @ bin11'
+    plotstyle: diamond2
+
+  # C efficiency
+  - type: TGraphAsymmError
+    objname: bin00C_WPcM_eff
+    file: WPeff.root
+    label: 'eff C @ bin00'
+    plotstyle: star3
+  - type: TGraphAsymmError
+    objname: bin01C_WPcM_eff
+    file: WPeff.root
+    label: 'eff C @ bin01'
+    plotstyle: cross3
+  - type: TGraphAsymmError
+    objname: bin10C_WPcM_eff
+    file: WPeff.root
+    label: 'eff C @ bin10'
+    plotstyle: square3
+  - type: TGraphAsymmError
+    objname: bin11C_WPcM_eff
+    file: WPeff.root
+    label: 'eff C @ bin11'
+    plotstyle: diamond3
+
+  # L efficiency
+  - type: TGraphAsymmError
+    objname: bin00L_WPcM_eff
+    file: WPeff.root
+    label: 'eff L @ bin00'
+    plotstyle: star4
+  - type: TGraphAsymmError
+    objname: bin01L_WPcM_eff
+    file: WPeff.root
+    label: 'eff L @ bin01'
+    plotstyle: cross4
+  - type: TGraphAsymmError
+    objname: bin10L_WPcM_eff
+    file: WPeff.root
+    label: 'eff L @ bin10'
+    plotstyle: square4
+  - type: TGraphAsymmError
+    objname: bin11L_WPcM_eff
+    file: WPeff.root
+    label: 'eff L @ bin11'
+    plotstyle: diamond4

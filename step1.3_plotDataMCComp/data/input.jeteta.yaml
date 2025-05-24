@@ -1,0 +1,41 @@
+figNAME: 'outputs/jeteta.pdf'
+upperpad:
+  xLABEL: ''
+  yLABEL: 'Entries'
+  yRANGE:
+    - 1e-0
+    - 1e5
+  ySCALE: linear
+  plotables:
+    - type: TH1F
+      objname: jeteta_data
+      file: o.root
+      label: data
+      plotstyle: data0
+      legorder: -1
+    # the foramt is controlled in each DrawObj.py
+    - type: TH1F
+      objname: jeteta_fake
+      file: o.root
+      label: QCD
+      plotstyle: hist2
+      legorder: 1
+    - type: TH1F
+      objname: jeteta_MCsum
+      file: o.root
+      label: gjet Madgraph
+      plotstyle: hist1
+      legorder: 0
+lowerpad:
+  xLABEL: '$\eta^{jet}$'
+  yLABEL: 'data / MC'
+  yRANGE:
+    -   0.5
+    -   1.5
+  # the foramt is controlled in each DrawObj.py
+  plotables:
+    - type: TGraphAsymmError
+      objname: jeteta_ratio
+      file: o.root
+      label: 'original'
+      plotstyle: data

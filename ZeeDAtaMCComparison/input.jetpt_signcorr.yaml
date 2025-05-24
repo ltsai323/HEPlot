@@ -1,0 +1,35 @@
+figNAME: 'outputs/jetpt_signcorr.pdf'
+upperpad:
+  xLABEL: ''
+  yLABEL: 'Entries'
+  yRANGE:
+    - 1e-0
+    - 1e8
+  ySCALE: log
+  plotables:
+    - type: TH1F
+      objname: sign_jetpt
+      file: output.root
+      label: JEC corrected
+      plotstyle: data0
+      legorder: -1
+    # the foramt is controlled in each DrawObj.py
+    - type: TH1F
+      objname: sign_jetpt_raw
+      file: output.root
+      label: raw MC
+      plotstyle: hist1
+      legorder: 0
+lowerpad:
+  xLABEL: '$p^{jet}_{T}$ (GeV)'
+  yLABEL: 'corr / raw'
+  yRANGE:
+    -   0.1
+    -   2.5
+  # the foramt is controlled in each DrawObj.py
+  plotables:
+    - type: TGraphAsymmError
+      objname: ratio_jetpt_signcorr
+      file: output.root
+      label: 'original'
+      plotstyle: data

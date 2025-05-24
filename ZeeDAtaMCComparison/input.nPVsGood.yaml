@@ -1,0 +1,46 @@
+figNAME: 'outputs/nPVsGood.pdf'
+upperpad:
+  xLABEL: ''
+  yLABEL: 'Entries'
+  yRANGE:
+    - 1e-0
+    - 1e4
+  ySCALE: linear
+  plotables:
+    - type: TH1F
+      objname: data_nPVsGood
+      file: output.root
+      label: data
+      plotstyle: data0
+      legorder: -1
+    # the foramt is controlled in each DrawObj.py
+    - type: TH1F
+      objname: sign_nPVsGoodORIG
+      file: output.root
+      label: MC original
+      plotstyle: hist1
+      legorder: 0
+    - type: TH1F
+      objname: sign_nPVsGoodWEIG
+      file: output.root
+      label: MC corrected
+      plotstyle: hist2
+      legorder: 1
+lowerpad:
+  xLABEL: 'nPVs Good'
+  yLABEL: 'data / MC'
+  yRANGE:
+    -   0.1
+    -   2.0
+  # the foramt is controlled in each DrawObj.py
+  plotables:
+    - type: TGraphAsymmError
+      objname: normratio_nPVsGood_ORIG
+      file: output.root
+      label: 'original'
+      plotstyle: data1
+    - type: TGraphAsymmError
+      objname: normratio_nPVsGood_WEIG
+      file: output.root
+      label: 'corrected'
+      plotstyle: data2

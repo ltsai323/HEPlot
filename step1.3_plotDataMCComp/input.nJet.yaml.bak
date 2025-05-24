@@ -1,0 +1,41 @@
+figNAME: 'outputs/nJET.pdf'
+upperpad:
+  xLABEL: ''
+  yLABEL: 'Entries'
+  yRANGE:
+    - 1e-2
+    - 1e6
+  ySCALE: log
+  plotables:
+    - type: TH1F
+      objname: data_jetmultp
+      file: o.root
+      label: data
+      plotstyle: data0
+      legorder: -1
+    # the foramt is controlled in each DrawObj.py
+    - type: TH1F
+      objname: fake_jetmultp
+      file: o.root
+      label: QCD
+      plotstyle: histBKG
+      legorder: 1
+    - type: TH1F
+      objname: stak_jetmultp
+      file: o.root
+      label: gjet Madgraph
+      plotstyle: hist1
+      legorder: 0
+lowerpad:
+  xLABEL: 'jet multiplicity'
+  yLABEL: 'data / MC'
+  yRANGE:
+    -   0.5
+    -   2.0
+  # the foramt is controlled in each DrawObj.py
+  plotables:
+    - type: TGraphAsymmError
+      objname: ratio_jetmultp
+      file: o.root
+      label: 'original'
+      plotstyle: data

@@ -1,0 +1,33 @@
+figNAME: 'outputs/hcheck_binconsistency_effL_WPbMedium.pdf'
+yLABEL: '$\epsilon_{l}$ @ WPb Medium'
+yRANGE:
+  - -0.1
+  - 1.2
+ySCALE: linear
+#yRANGE:
+#  - 0.0
+#  - 1.0
+#ySCALE: linear
+xLABEL: '$p^{\gamma}_{T}$ (GeV)'
+plotables:
+  # the foramt is controlled in each DrawObj.py
+  - type: TGraphAsymmError
+    objname: bin00L_WPbM_eff
+    file: WPeff.root
+    label: 'barrel photon, barrel jet'
+    plotstyle: data1
+  - type: TGraphAsymmError
+    objname: bin01L_WPbM_eff
+    file: WPeff.root
+    label: 'barrel photon, endcap jet'
+    plotstyle: data2
+  - type: TGraphAsymmError
+    objname: bin10L_WPbM_eff
+    file: WPeff.root
+    label: 'endcap photon, barrel jet'
+    plotstyle: data3
+  - type: TGraphAsymmError
+    objname: bin11L_WPbM_eff
+    file: WPeff.root
+    label: 'endcap photon, endcap jet'
+    plotstyle: data4

@@ -1,0 +1,35 @@
+figNAME: 'outputs/zphi.pdf'
+upperpad:
+  xLABEL: ''
+  yLABEL: 'Entries'
+  yRANGE:
+    - 1e-0
+    - 2e5
+  ySCALE: linear
+  plotables:
+    - type: TH1F
+      objname: data_zphi
+      file: /Users/noises/Downloads/output.root
+      label: data
+      plotstyle: data0
+      legorder: -1
+    # the foramt is controlled in each DrawObj.py
+    - type: TH1F
+      objname: sign_zphi
+      file: /Users/noises/Downloads/output.root
+      label: Z+jet
+      plotstyle: hist1
+      legorder: 0
+lowerpad:
+  xLABEL: '$\phi^{Z}$'
+  yLABEL: 'data / MC'
+  yRANGE:
+    -   0.1
+    -   1.2
+  # the foramt is controlled in each DrawObj.py
+  plotables:
+    - type: TGraphAsymmError
+      objname: ratio_zphi
+      file: /Users/noises/Downloads/output.root
+      label: 'original'
+      plotstyle: data

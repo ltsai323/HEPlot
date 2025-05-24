@@ -1,0 +1,2 @@
+#python3 secondary_plotable.py
+DrawRatioPlotablesWithCMSFormat.py input.yaml

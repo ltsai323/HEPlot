@@ -1,0 +1,14 @@
+s/star2/star2/
+s/cross2/cross2/
+s/cross3/square2/
+s/cross4/diamond2/
+
+s/star3/star3/
+s/cross3/cross3/
+s/square3/square3/
+s/square4/diamond3/
+
+s/star4/star4/
+s/cross4/cross4/
+s/square4/square4/
+s/diamond4/diamond4/

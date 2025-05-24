@@ -1,0 +1,25 @@
+figNAME: 'outputs/hi.pdf'
+yLABEL: 'hiii'
+yRANGE:
+  - 0
+  - 3e2
+ySCALE: linear
+#yRANGE:
+#  - 0.0
+#  - 1.0
+#ySCALE: linear
+xLABEL: '$p^{\gamma}_{T}$ (GeV)'
+legNcolumn: 3
+legFONTsize: 'xx-small'
+
+plotables:
+  - type: TH1F
+    objname: bin00_truthnumB
+    file: ooo.root
+    label: 'truth numB bin00'
+    plotstyle: star0
+  - type: TH1F
+    objname: bin00_fitnumB
+    file: ooo.root
+    label: 'estimated numB bin00'
+    plotstyle: diamond0

@@ -1,0 +1,41 @@
+figNAME: 'outputs/SVpt.pdf'
+upperpad:
+  xLABEL: ''
+  yLABEL: 'Entries'
+  yRANGE:
+    - 1e-0
+    - 1e7
+  ySCALE: log
+  plotables:
+    - type: TH1F
+      objname: SVpt_data
+      file: o.root
+      label: data
+      plotstyle: data0
+      legorder: -1
+    # the foramt is controlled in each DrawObj.py
+    - type: TH1F
+      objname: SVpt_fake
+      file: o.root
+      label: QCD
+      plotstyle: hist2
+      legorder: 1
+    - type: TH1F
+      objname: SVpt_MCsum
+      file: o.root
+      label: gjet Madgraph
+      plotstyle: hist1
+      legorder: 0
+lowerpad:
+  xLABEL: '$p^{SV}_{T}$ (GeV)'
+  yLABEL: 'data / MC'
+  yRANGE:
+    -   0.5
+    -   4.5
+  # the foramt is controlled in each DrawObj.py
+  plotables:
+    - type: TGraphAsymmError
+      objname: SVpt_ratio
+      file: o.root
+      label: 'original'
+      plotstyle: data
