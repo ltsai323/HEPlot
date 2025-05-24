@@ -4,6 +4,7 @@ import numpy as np
 import mplhep as hep
 import matplotlib.pyplot as plt
 import matplotlib.ticker as mtick
+import textwrap
 
 import math
 import mplhep as hep
@@ -22,6 +23,7 @@ def BUG(mesg):
 
 INFO_CMS_PRELIMIILARY_UL2016PREVFP  = {'label':'Prelimilary', 'data':True, 'lumi':19.52, 'year':'UL2016preVFP' , 'loc':2}
 INFO_CMS_PRELIMIILARY_UL2016POSTVFP = {'label':'Prelimilary', 'data':True, 'lumi':16.81, 'year':'UL2016postVFP', 'loc':2}
+INFO_CMS_PRELIMIILARY_2022EE        = {'label':'Prelimilary', 'data':True, 'lumi':26.81, 'year':'2022EE'       , 'loc':2, 'com':13.6}
 
 def DrawContentAtPad(ax, plotobjs,
         xLABEL:str=None, yLABEL:str=None, ySCALE:str=None, yRANGE:tuple=None, **otherargs_notused ):
@@ -30,7 +32,8 @@ def DrawContentAtPad(ax, plotobjs,
         plotobj.Draw(ax)
 
     if xLABEL: ax.set_xlabel(xLABEL)
-    if yLABEL: ax.set_ylabel(yLABEL)
+    if yLABEL:
+        ax.set_ylabel(yLABEL.replace('\\n','\n'))
     yAxisConfigs(ax,yRANGE, ySCALE)
     ax.grid(True, which='major', axis='y')
 
@@ -94,7 +97,7 @@ if __name__ == "__main__":
     DrawContentAtPad(ax_lower, lower_plotables, **conf['lowerpad'])
     ax_lower.axhline(y=1.0, color='gray', linestyle='-', linewidth=0.5)
 
-    hep.cms.label(ax=ax_upper, **INFO_CMS_PRELIMIILARY_UL2016POSTVFP)
+    hep.cms.label(ax=ax_upper, **INFO_CMS_PRELIMIILARY_2022EE)
 
     figname = conf['figNAME']
     if figname == '':

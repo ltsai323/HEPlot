@@ -61,10 +61,10 @@ class DrawObj_TH1F:
             mesg = f'parameter: opened file "{ self.file }" and "{ self.objname }"'
             highlight_mesg(mesg)
             raise IOError(e)
-        if 'data' in self.plotstyle:
-            DrawEP(ax, graph_obj, self.label, self.plotstyle)
-        else:
+        if 'hist' in self.plotstyle or 'line' in self.plotstyle:
             DrawHIST(ax, graph_obj, self.label, self.plotstyle)
+        else:
+            DrawEP(ax, graph_obj, self.label, self.plotstyle)
 
 if __name__ == "__main__":
     import yaml
