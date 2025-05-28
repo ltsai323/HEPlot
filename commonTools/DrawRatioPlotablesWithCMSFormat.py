@@ -79,6 +79,9 @@ if __name__ == "__main__":
     DrawContentAtPad(ax_upper, upper_plotables, **conf['upperpad'])
     
     reordered_legend_items = sum([ 0 if 'legorder' in plotable else 1 for plotable in reversed(conf['upperpad']['plotables']) ])
+    legNcolumn = conf['upperpad']['legNcolumn'] if 'legNcolumn' in conf['upperpad'] else 1
+    legFONTsize = conf['upperpad']['legFONTsize'] if 'legFONTsize' in conf['upperpad'] else 'small'
+
     if reordered_legend_items == 0:
         info(f'[ReorderedLegend] Use the option "legorder" to arrange items')
         handles, labels = ax_upper.get_legend_handles_labels()
@@ -89,9 +92,10 @@ if __name__ == "__main__":
         ordered_labels = [ my_order[o] for o in sorted(my_order.keys()) ]
         ordered_handles = [ handles[labels.index(label)] for label in ordered_labels ]
 
-        ax_upper.legend(ordered_handles, ordered_labels)
+        ax_upper.legend(ordered_handles, ordered_labels, ncol=legNcolumn, fontsize=legFONTsize)
     else:
         info(f'[DefaultLegend] Use default item order.')
+        ax.legend(ncol=legNcolumn, fontsize=legFONTsize)
         ax_upper.legend()
 
     DrawContentAtPad(ax_lower, lower_plotables, **conf['lowerpad'])
