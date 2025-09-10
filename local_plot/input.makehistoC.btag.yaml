@@ -1,0 +1,51 @@
+figNAME: 'check.makehistoC_btag.pdf'
+dataORmc: 'mc'
+upperpad:
+  legNcolumn: 1
+  legFONTsize: 'x-small'
+  legTITLE: 'name:  chi2 / nDoF'
+  legTITLEfontsize: 'xx-small'
+  xLABEL: ''
+  yLABEL: 'Normalized Yields'
+ #yRANGE:
+ #  - -0.05
+ #  - 1.2
+  ySCALE: log
+  plotables:
+    - type: TH1F
+      objname: truthC_gjet_btag
+      file: makehisto_shape.root
+      plotstyle: line1
+     #legorder: 0
+     #label: hi
+    - type: TH1F
+      objname: sigC_gjet_origweight_btag
+      file: makehisto_shape.root
+      plotstyle:  data2
+     #legorder: 1
+     #label: hi
+    - type: TH1F
+      objname: sigC_gjet_btag
+      file: makehisto_shape.root
+      plotstyle:  data3
+     #legorder: 2
+     #label: hi
+
+lowerpad:
+  xLABEL: 'bTagging Score'
+  yLABEL: 'MC / psuedo data'
+  yRANGE:
+    -   0.7
+    -   1.8
+  # the foramt is controlled in each DrawObj.py
+  plotables:
+    - type: TGraphAsymmError
+      objname: ratiobtagC_old
+      file: makehisto_shape.root
+      label: 'ratio old'
+      plotstyle: data2
+    - type: TGraphAsymmError
+      objname: ratiobtagC_new
+      file: makehisto_shape.root
+      label: 'ratio new'
+      plotstyle: data3

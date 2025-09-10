@@ -1,0 +1,2 @@
+make goal1 oTAG=oJetPtSF btag=/Users/noises/Downloads/psuedofit_datacard_btag_oJetPtSF.root cvsl=/Users/noises/Downloads/psuedofit_datacard_cvsl_oJetPtSF.root cvsb=/Users/noises/Downloads/psuedofit_datacard_cvsb_oJetPtSF.root
+make goal1 oTAG=wJetPtSF btag=/Users/noises/Downloads/psuedofit_datacard_btag_wJetPtSF.root cvsl=/Users/noises/Downloads/psuedofit_datacard_cvsl_wJetPtSF.root cvsb=/Users/noises/Downloads/psuedofit_datacard_cvsb_wJetPtSF.root

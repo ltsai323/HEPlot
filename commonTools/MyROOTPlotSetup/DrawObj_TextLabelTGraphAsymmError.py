@@ -31,11 +31,19 @@ def GetAsymXY(graphOBJ:uproot.models.TGraph.Model_TGraphAsymmErrors_v3):
 def DrawEP(ax, graphOBJ, label:str, plotSTYLE:str, plotIDX:int=0, lenPLOTABLEs:int=0):
     bin_center, bin_content = GetAsymXY(graphOBJ)
     x_err, y_err = GetAsymErrXY(graphOBJ)
-    ax.errorbar( bin_center, bin_content, xerr=x_err, yerr=y_err, label=label, **VisualizationPresets.PlotStyle(plotSTYLE))
+
+    print(x_err)
+    x_err0 = x_err[0] * float(lenPLOTABLEs) / float(lenPLOTABLEs+1)
+
+    print(f'bin center {bin_center}')
+    print(f'x_err {x_err}')
+    print(f'y_err {y_err}')
+    new_bin_center = bin_center - x_err[0]
+    ax.errorbar( new_bin_center, bin_content, xerr=x_err0, yerr=y_err, label=label, **VisualizationPresets.PlotStyle(plotSTYLE))
 # Create a ratio plot function
 
-class DrawObj_TGraphAsymmError:
-    name = 'TGraphAsymmError'
+class DrawObj_TextLabelTGraphAsymmError:
+    name = 'TextLabelTGraphAsymmError'
     def __init__(self, yamlCONFIGs):
         try:
             config = yamlCONFIGs
@@ -52,7 +60,7 @@ class DrawObj_TGraphAsymmError:
             print('\n\n')
             raise KeyError(e)
     def __str__(self):
-        return f'DrawObj_TGraphAsymmError({self.objname}, label={self.label})'
+        return f'DrawObj_TextLabelTGraphAsymmError({self.objname}, label={self.label})'
     def Draw(self,ax, plotIDX=0, lenPLOTABLEs=0):
         try:
             f = uproot.open(self.file)
@@ -87,7 +95,7 @@ if __name__ == "__main__":
     f = open('data/EG90.yaml','r')
     configs = yaml.safe_load(f)
     fig,ax = plt.subplots()
-    drawobj = DrawObj_TGraphAsymmError(configs['plotables'][0]) # draw first plotables for test
+    drawobj = DrawObj_TextLabelTGraphAsymmError(configs['plotables'][0]) # draw first plotables for test
     drawobj.Draw(ax)
 
     if 'yRANGE' in configs:

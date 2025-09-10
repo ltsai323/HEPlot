@@ -1,0 +1,35 @@
+figNAME: 't.pdf'
+upperpad:
+  xLABEL: '$p_{T}^{jet}$'
+  yLABEL: 'b-tagging efficiencies'
+  #yRANGE:
+  #  - 0
+  #  - 1e10
+  #ySCALE: log
+  plotables:
+    - type: TGraphAsymmError
+      objname: horig
+      file: create_compare.root
+      label: reference in GJetMadgraph
+      plotstyle: square1
+      legorder: -1
+    # the foramt is controlled in each DrawObj.py
+    - type: TGraphAsymmError
+      objname: hcomp
+      file: create_compare.root
+      label: add BTV SF central
+      plotstyle: diamond2
+      legorder: 0
+lowerpad:
+  xLABEL: '$p_{T}^{jet}$'
+  yLABEL: 'ratio'
+  yRANGE:
+    -   0.99
+    -   1.01
+  # the foramt is controlled in each DrawObj.py
+  plotables:
+    - type: TGraphAsymmError
+      objname: hdiff
+      file: create_compare.root
+      label: 'ratio'
+      plotstyle: data0

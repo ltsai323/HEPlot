@@ -1,0 +1,51 @@
+figNAME: 'check.makehisto_kine_jetphi.pdf'
+dataORmc: 'mc'
+upperpad:
+  legNcolumn: 1
+  legFONTsize: 'x-small'
+  legTITLE: 'name:  chi2 / nDoF'
+  legTITLEfontsize: 'xx-small'
+  xLABEL: ''
+  yLABEL: 'Normalized Yields'
+ #yRANGE:
+ #  - -0.05
+ #  - 1.2
+  ySCALE: log
+  plotables:
+    - type: TH1F
+      objname: kine_data_jetphi
+      file: makehisto_shape.root
+      plotstyle: line1
+     #legorder: 0
+     #label: hi
+    - type: TH1F
+      objname: kine_gjet_origweight_jetphi
+      file: makehisto_shape.root
+      plotstyle:  data2
+     #legorder: 1
+     #label: hi
+    - type: TH1F
+      objname: kine_gjet_jetphi
+      file: makehisto_shape.root
+      plotstyle:  data3
+     #legorder: 2
+     #label: hi
+
+lowerpad:
+  xLABEL: 'photon pt'
+  yLABEL: 'MC / psuedo data'
+  yRANGE:
+    -   0.7
+    -   1.8
+  # the foramt is controlled in each DrawObj.py
+  plotables:
+    - type: TGraphAsymmError
+      objname: ratiojetphi_old
+      file: makehisto_shape.root
+      label: 'ratio old'
+      plotstyle: data2
+    - type: TGraphAsymmError
+      objname: ratiojetphi_new
+      file: makehisto_shape.root
+      label: 'ratio new'
+      plotstyle: data3

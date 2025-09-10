@@ -1,0 +1,38 @@
+self:=makefile_acrossfile
+fORIG:=effOrig_WPbL.root
+fCOMP:=scalefactors_and_uncertainties.root
+
+check_defined = \
+    $(strip $(foreach 1,$1, \
+    $(call __check_defined,$1,$(strip $(value 2)))))
+__check_defined = \
+    $(if $(value $1),, \
+    $(error Undefined $1$(if $2, ($2))))
+
+oTAG:=hii
+compare: ## Plot 2 TGraphAsymmError and Compare difference of them [hNAME=effL0][fCOMP=scalefactors_and_uncertainties.root][fORIG=effOrig_WPbL.root][oTAG=hii]
+	$(call check_defined,hNAME)
+	python3 create_compare.py $(hNAME) $(fORIG) $(fCOMP) && DrawRatioPlotablesWithCMSFormat.py input_create_compare.yaml && mv t.pdf h_$(oTAG).pdf
+
+compare_all: ## plot all eff comparison [iFILE=scalefactors_and_uncertainties.root]
+	$(MAKE) -f $(self) compare fORIG=$(fORIG) fCOMP=$(fCOMP) hNAME=effL0  oTAG=effL0
+	$(MAKE) -f $(self) compare fORIG=$(fORIG) fCOMP=$(fCOMP) hNAME=effC0  oTAG=effC0
+	$(MAKE) -f $(self) compare fORIG=$(fORIG) fCOMP=$(fCOMP) hNAME=effB0  oTAG=effB0
+	$(MAKE) -f $(self) compare fORIG=$(fORIG) fCOMP=$(fCOMP) hNAME=effL1  oTAG=effL1
+	$(MAKE) -f $(self) compare fORIG=$(fORIG) fCOMP=$(fCOMP) hNAME=effC1  oTAG=effC1
+	$(MAKE) -f $(self) compare fORIG=$(fORIG) fCOMP=$(fCOMP) hNAME=effB1  oTAG=effB1
+
+sourceDIR:=/Users/noises/Downloads/
+update_root_source: ## [sourceDIR=~/Downloads/]
+	mv $(sourceDIR)/$(fORIG) .
+	mv $(sourceDIR)/$(fCOMP) .
+
+IN_ARGS = [opts]
+
+
+help:  ## Display this help
+	@awk 'BEGIN {FS = ":.*##"; printf "Usage: make \033[32m<command>\033[0m $(IN_ARGS)\n\nCommands:\n\033[36m\033[0m\n"} \
+	/^[0-9a-zA-Z_-]+:.*?##/ { gsub(/\\n/, "\n                   "); printf "  \033[36m%-15s\033[0m %s\n", $$1, $$2 } \
+	/^##@/ { printf "\n\033[1m%s\033[0m\n", substr($$0, 5) } ' $(MAKEFILE_LIST)
+
+.DEFAULT_GOAL := help

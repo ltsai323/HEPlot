@@ -1,0 +1,28 @@
+figNAME: ''
+yLABEL: 'Entries normalized to 1'
+yRANGE:
+  - 1e-5
+  - 100.0
+ySCALE: linear
+#yRANGE:
+#  - 0.0
+#  - 1.0
+#ySCALE: linear
+xLABEL: 'bScore'
+plotables:
+  # the foramt is controlled in each DrawObj.py
+  - type: TextLabelTH1F
+    objname: h1
+    file: testroot_create_textlabel_hist.root
+    label: hiiii
+    plotstyle: nostackb1
+  - type: TextLabelTH1F
+    objname: h1
+    file: testroot_create_textlabel_hist.root
+    label: hiiii
+    plotstyle: nostackb2
+  - type: TextLabelTH1F
+    objname: h1
+    file: testroot_create_textlabel_hist.root
+    label: hiiii
+    plotstyle: nostackb3

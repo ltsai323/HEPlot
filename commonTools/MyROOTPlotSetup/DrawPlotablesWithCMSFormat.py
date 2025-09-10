@@ -9,6 +9,7 @@ import mplhep as hep
 from uncertainties import ufloat, unumpy
 from MyROOTPlotSetup.DrawObj_TGraphAsymmError import DrawObj_TGraphAsymmError
 from MyROOTPlotSetup.DrawObj_TH1F             import DrawObj_TH1F
+from MyROOTPlotSetup.DrawObj_TextLabelTH1F    import DrawObj_TextLabelTH1F
 
 
 
@@ -65,6 +66,8 @@ def DrawObjFactory(plotable):
         return DrawObj_TGraphAsymmError(plotable)
     if Type == DrawObj_TH1F            .name:
         return DrawObj_TH1F            (plotable)
+    if Type == DrawObj_TextLabelTH1F   .name:
+        return DrawObj_TextLabelTH1F   (plotable)
     raise IOError(f'[InvalidType] "{ plotable["type"] }" is an invalid plotable type. Please check yaml file')
 
 if __name__ == "__main__":

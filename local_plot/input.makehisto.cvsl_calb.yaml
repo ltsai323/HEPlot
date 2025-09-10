@@ -1,0 +1,73 @@
+figNAME: 'check.makehisto_cvsl_calb.pdf'
+dataORmc: 'mc'
+commonINPUTfile: ''
+
+upperpad:
+  legNcolumn: 2
+  legFONTsize: 'xx-small'
+  xLABEL: ''
+  yLABEL: 'Normalized Yields'
+ #yRANGE:
+ #  - -0.05
+ #  - 1.2
+  ySCALE: log
+  plotables:
+    - type: TH1F
+      objname: truthL_gjet_cvsl
+      file: makehisto_shape.root
+      plotstyle: line2
+      legorder: 0
+      label: truthL
+    - type: TH1F
+      objname: sigL_gjet_cvsl
+      file: makehisto_shape.root
+      plotstyle:  data2
+      legorder: 3
+      label: templateL
+    - type: TH1F
+      objname: truthC_gjet_cvsl
+      file: makehisto_shape.root
+      plotstyle: line3
+      legorder: 1
+      label: truthC
+    - type: TH1F
+      objname: sigC_gjet_cvsl
+      file: makehisto_shape.root
+      plotstyle:  diamond3
+      legorder: 4
+      label: templateC
+    - type: TH1F
+      objname: truthB_gjet_cvsl
+      file: makehisto_shape.root
+      plotstyle: line4
+      legorder: 2
+      label: truthB
+    - type: TH1F
+      objname: sigB_gjet_cvsl
+      file: makehisto_shape.root
+      plotstyle:  cross4
+      legorder: 5
+      label: templateB
+
+lowerpad:
+  xLABEL: 'CvsL'
+  yLABEL: 'template / truth'
+  yRANGE:
+    -   0.7
+    -   1.8
+  plotables:
+    - type: TGraphAsymmError
+      objname: ratiocvslL_new
+      file: makehisto_shape.root
+      label: 'ratioL'
+      plotstyle: data2
+    - type: TGraphAsymmError
+      objname: ratiocvslC_new
+      file: makehisto_shape.root
+      label: 'ratioC'
+      plotstyle: diamond3
+    - type: TGraphAsymmError
+      objname: ratiocvslB_new
+      file: makehisto_shape.root
+      label: 'ratioB'
+      plotstyle: cross4

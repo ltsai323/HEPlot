@@ -18,44 +18,44 @@ YAML content
 >     plotstyle: test
 '''
 
-GOT_BIN_WIDTH = None
-
-FILE_IDENTIFIER = 'DrawObj_TH1F'
-DEBUG_MODE = False
-def BUG(mesg):
-    if DEBUG_MODE:
-        print(f'b-{FILE_IDENTIFIER}@ {mesg}')
 
 
-import decimal
-def set_bin_width(binWIDTHs:list):
-    input_bin_widths = [ decimal.Decimal(binwidth).quantize(decimal.Decimal('.0000000'), decimal.ROUND_HALF_UP) for binwidth in binWIDTHs ]
-    if len(input_bin_widths) == 0: return
-
-    is_const_bin_width = len( set(input_bin_widths) ) == 1 ## check the input binWIDTH is constant binning
-    BUG(f'set_bin_width(): input_bin_widths({input_bin_widths}) and is_const_bin_width({is_const_bin_width})')
-    BUG(f'updated: {input_bin_widths} and set({set(input_bin_widths)})')
-    if is_const_bin_width:
-        global GOT_BIN_WIDTH
-        GOT_BIN_WIDTH = input_bin_widths[0]
-
-# if an empty label put, use TH1F.GetTitle() as label content
-def DrawHIST(ax, uprootTH1Fobj, plotSTYLE:str, label:str='', plotIDX:int=0, lenPLOTABLEs:int=0):
+def DrawHIST(ax, uprootTH1Fobj, label:str, plotSTYLE:str, plotIDX:int=0, lenPLOTABLEs:int=0):
     values = uprootTH1Fobj.values()
     bin_edges = uprootTH1Fobj.axis().edges()
-
-    if not label: label = uprootTH1Fobj.title
-    set_bin_width([ bin_edges[idx+1] - bin_edges[idx] for idx in range(len(bin_edges)-1) ])
     ax.hist(bin_edges[:-1], bins=bin_edges, weights=values, label=label, **VisualizationPresets.PlotStyle(plotSTYLE))
-def DrawEP(ax, uprootTH1Fobj, plotSTYLE:str, label:str='', plotIDX:int=0, lenPLOTABLEs:int=0):
+def DrawEP(ax, uprootTH1Fobj, label:str, plotSTYLE:str, plotIDX:int=0, lenPLOTABLEs:int=0):
     values = uprootTH1Fobj.values()
     errors = uprootTH1Fobj.errors()
     bin_centers = uprootTH1Fobj.axis().centers()
     bin_errors = uprootTH1Fobj.axis().widths() / 2.
-
-    set_bin_width( uprootTH1Fobj.axis().widths() )
-    if not label: label = uprootTH1Fobj.title
     ax.errorbar( bin_centers, values, xerr=bin_errors, yerr=errors, label=label, **VisualizationPresets.PlotStyle(plotSTYLE))
+#def DrawNOSTACKb(ax, uprootTH1Fobj, label:str, plotSTYLE:str, plotIDX:int=0, lenPLOTABLEs:int=0):
+#    values = uprootTH1Fobj.values()
+#    bin_edges = uprootTH1Fobj.axis().edges()
+#    bin_widths = np.diff(bin_edges) / float(2+lenPLOTABLEs)
+#    shifted_idx = float( 1+plotIDX )
+#
+#    bin_centers = bin_edges[:-1] + 0.5 * bin_widths
+#    shifted_bin_centers = bin_centers + shifted_idx * bin_widths
+#
+#    ### ax.bar treats bin_edge as center.
+#    #ax.hist(bin_edges[:-1], bins=bin_edges, weights=values, label=label, **VisualizationPresets.PlotStyle(plotSTYLE))
+#    ax.bar(shifted_bin_centers, values, bin_widths, label=label, yerr=[0], **VisualizationPresets.PlotStyle(plotSTYLE))
+def DrawNOSTACKb(ax, uprootTH1Fobj, label:str, plotSTYLE:str, plotIDX:int=0, lenPLOTABLEs:int=0):
+    values = uprootTH1Fobj.values()
+    errors = uprootTH1Fobj.errors()
+    bin_edges = uprootTH1Fobj.axis().edges()
+    bin_widths = np.diff(bin_edges) / float(2+lenPLOTABLEs)
+    shifted_idx = float( 1+plotIDX-float( (2+lenPLOTABLEs)/2.) )
+
+    bin_centers = bin_edges[:-1] + 0.5 * bin_widths
+    shifted_bin_centers = bin_centers + shifted_idx * bin_widths
+
+    ### ax.bar treats bin_edge as center.
+    #ax.hist(bin_edges[:-1], bins=bin_edges, weights=values, label=label, **VisualizationPresets.PlotStyle(plotSTYLE))
+    ax.bar(shifted_bin_centers, values, bin_widths, label=label, yerr=errors, **VisualizationPresets.PlotStyle(plotSTYLE))
+    #ax.errorbar(shifted_bin_centers, values, yerr=errors, label=label, **VisualizationPresets.PlotStyle(plotSTYLE))
 
 def highlight_mesg(mesg):
     print('\n\n')
@@ -64,15 +64,16 @@ def highlight_mesg(mesg):
     print('-' * len(mesg))
     print('\n\n')
 
-class DrawObj_TH1F:
-    name = 'TH1F'
+class DrawObj_TextLabelTH1F:
+    name = 'TextLabelTH1F'
     def __init__(self, yamlCONFIGs):
         try:
             config = yamlCONFIGs
             self.file = config['file']
             self.objname = config['objname']
-            self.label = config.get('label', '') # if input args lack "label", use histogram title. However, empty label feature failed if "legorder" was set
+            self.label = config['label']
             self.plotstyle = config['plotstyle']
+            self.x_axislabels = None
         except KeyError as e:
             mesg = f'Invalid key found in yaml configuration. please check'
             highlight_mesg(mesg)
@@ -83,6 +84,8 @@ class DrawObj_TH1F:
         try:
             f = uproot.open(self.file)
             graph_obj = f[self.objname]
+            #self.x_axislabels = [ graph_obj.GetXaxis().GetBinLabel(idx+1) for idx in graph_obj.GetNbinsX() ] ## only valid for pyROOT, instead of uproot
+            self.x_axislabels = getattr(graph_obj.axes[0], "labels", None)
         except IOError as e:
             mesg = f'parameter: opened file "{ self.file }" and "{ self.objname }"'
             highlight_mesg(mesg)
@@ -93,16 +96,13 @@ class DrawObj_TH1F:
                 if predefined_style in plotSTYLE: return True
             return False
 
+        if allowed_plotstyle(self.plotstyle, 'nostackb'):
+            return DrawNOSTACKb(ax, graph_obj, self.label, self.plotstyle, plotIDX, lenPLOTABLEs)
         if allowed_plotstyle(self.plotstyle, 'hist', 'line'):
-            DrawHIST(ax, graph_obj, self.plotstyle, self.label, plotIDX, lenPLOTABLEs)
-            if GOT_BIN_WIDTH is not None: setattr(self, 'binwidth', GOT_BIN_WIDTH)
-            return
+            return DrawHIST(ax, graph_obj, self.label, self.plotstyle, plotIDX, lenPLOTABLEs)
         if allowed_plotstyle(self.plotstyle, 'data', 'square', 'diamond', 'cross', 'star', 'test'):
-            DrawEP(ax, graph_obj, self.plotstyle, self.label, plotIDX, lenPLOTABLEs)
-            if GOT_BIN_WIDTH is not None: setattr(self, 'binwidth', GOT_BIN_WIDTH)
-            return
+            return DrawEP(ax, graph_obj, self.label, self.plotstyle, plotIDX, lenPLOTABLEs)
         raise IOError(f'[InvalidPlotStyle] DrawObj_TH1F does not support plot style "{ self.plotstyle }"')
-
 
 if __name__ == "__main__":
     import yaml

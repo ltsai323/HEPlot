@@ -1,0 +1,71 @@
+figNAME: 'check.shapecheck.cvsb.pdf'
+upperpad:
+  legNcolumn: 2
+  legFONTsize: 'xx-small'
+  xLABEL: ''
+  yLABEL: 'Normalized Yields'
+ #yRANGE:
+ #  - -0.05
+ #  - 1.2
+  ySCALE: log
+  plotables:
+    - type: TH1F
+      objname: truthL
+      file: fitshape_oJetPtSF_cvsb.root
+      label:  Ljet truth
+      plotstyle: line1
+      legorder: 0
+    - type: TH1F
+      objname: truthC
+      file: fitshape_oJetPtSF_cvsb.root
+      label: Cjet truth
+      plotstyle:  line2
+      legorder: 1
+    - type: TH1F
+      objname: truthB
+      file: fitshape_oJetPtSF_cvsb.root
+      label: Bjet truth
+      plotstyle:  line3
+      legorder: 2
+    - type: TH1F
+      objname: Ljet
+      file: fitshape_oJetPtSF_cvsb.root
+      label:  Ljet fit
+      plotstyle: data1
+      legorder: 3
+    - type: TH1F
+      objname: Cjet
+      file: fitshape_oJetPtSF_cvsb.root
+      label: Cjet fit
+      plotstyle: data2
+      legorder: 4
+    - type: TH1F
+      objname: Bjet
+      file: fitshape_oJetPtSF_cvsb.root
+      label: Bjet fit
+      plotstyle: data3
+      legorder: 5
+
+lowerpad:
+  xLABEL: 'cvsb'
+  yLABEL: 'data / MC'
+  yRANGE:
+    -   0.7
+    -   1.8
+  # the foramt is controlled in each DrawObj.py
+  plotables:
+    - type: TGraphAsymmError
+      objname: ratioL
+      file: fitshape_oJetPtSF_cvsb.root
+      label: 'ratio L'
+      plotstyle: data1
+    - type: TGraphAsymmError
+      objname: ratioC
+      file: fitshape_oJetPtSF_cvsb.root
+      label: 'ratio C'
+      plotstyle: data2
+    - type: TGraphAsymmError
+      objname: ratioB
+      file: fitshape_oJetPtSF_cvsb.root
+      label: 'ratio B'
+      plotstyle: data3

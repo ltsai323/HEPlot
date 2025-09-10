@@ -1,0 +1,39 @@
+figNAME: ''
+upperpad:
+  xLABEL: ''
+  yLABEL: 'Entries normalized to 1'
+  yRANGE:
+    - 1e-4
+    - 1e2
+  ySCALE: log
+  plotables:
+    # the foramt is controlled in each DrawObj.py
+    - type: TextLabelTH1F
+      objname: h1
+      file: testroot_create_textlabel_hist.root
+      label: hiiii
+      plotstyle: nostackb1
+    - type: TextLabelTH1F
+      objname: h1
+      file: testroot_create_textlabel_hist.root
+      label: hiiii
+      plotstyle: nostackb2
+    - type: TextLabelTH1F
+      objname: h1
+      file: testroot_create_textlabel_hist.root
+      label: hiiii
+      plotstyle: nostackb3
+
+lowerpad:
+  xLABEL: 'bScore'
+  yLABEL: 'C/L'
+    #yRANGE:
+    #  - -0.5
+    #  - 10.0
+  # the foramt is controlled in each DrawObj.py
+  plotables:
+    - type: TextLabelTGraphAsymmError
+      objname: theratio
+      file: testroot_create_textlabel_hist.root
+      label: 'C/L'
+      plotstyle: data0

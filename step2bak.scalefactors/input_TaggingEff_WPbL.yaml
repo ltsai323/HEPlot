@@ -1,0 +1,23 @@
+figNAME: 'h_TaggingEff_WPbL.pdf'
+yLABEL: WPbL Tagging Efficiencies
+yRANGE:
+  - 0.
+  - 1.4
+xLABEL: '$p^{jet}_{T}$ (GeV)'
+plotables:
+  # the foramt is controlled in each DrawObj.py
+  - type: TGraphAsymmError
+    objname: effL0
+    file: scalefactors_and_uncertainties.root
+    label: l jet
+    plotstyle: data2
+  - type: TGraphAsymmError
+    objname: effC0
+    file: scalefactors_and_uncertainties.root
+    label: c jet
+    plotstyle: data3
+  - type: TGraphAsymmError
+    objname: effB0
+    file: scalefactors_and_uncertainties.root
+    label: b jet
+    plotstyle: data4
